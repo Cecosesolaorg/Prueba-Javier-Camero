@@ -1,0 +1,16 @@
+{
+  "name": "Inventario Cecosesola",
+  "short_name": "Inventario",
+  "description": "Sistema de Inventario - Feria del Este",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0d140d",
+  "theme_color": "#194a08",
+  "icons": [
+    {
+      "src": "assets/logo-header.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

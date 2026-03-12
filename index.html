@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cecosesola | Bienvenidos</title>
+    <meta name="description" content="Inicia sesión en tu portal premium con estilo y elegancia.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+</head>
+
+<body>
+    <div class="background-glow"></div>
+    <main class="login-container">
+        <!-- Icono de Personas -->
+        <div id="teamAssignmentsBtn" class="floating-teambtn" title="Ver asignaciones de hoy">
+            <span>👥</span>
+        </div>
+        <header class="login-header">
+            <div class="login-logo">
+                <img src="assets/logo-cecosesola-blanco-1.png" alt="Cecosesola Logo">
+            </div>
+            <h1>Bienvenido</h1>
+            <p>Por favor, introduce tus datos para continuar</p>
+        </header>
+        <form id="loginForm" class="login-form">
+            <div class="input-group">
+                <label for="responsable">NOMBRE RESPONSABLE DIRECTO</label>
+                <input type="text" id="responsable" name="responsable" placeholder="Nombre completo del responsable"
+                    required>
+                <div class="input-border"></div>
+            </div>
+            <div class="input-group">
+                <label for="assignedAisle">Pasillo Asignado</label>
+                <select id="assignedAisle" name="assignedAisle" required>
+                    <option value="" disabled selected>Selecciona tu pasillo</option>
+                    <option value="PASILLO 1 PASTAS">PASILLO 1 PASTAS</option>
+                    <option value="PASILLO 2 CAFE">PASILLO 2 CAFE</option>
+                    <option value="PASILLO 3 PANES">PASILLO 3 PANES</option>
+                    <option value="PASILLO 4 GALLETAS">PASILLO 4 GALLETAS</option>
+                    <option value="PASILLO 5 SALSA">PASILLO 5 SALSA</option>
+                    <option value="PASILLO 6 JABON">PASILLO 6 JABON</option>
+                    <option value="PASILLO 7 PAPEL">PASILLO 7 PAPEL</option>
+                    <option value="PASILLO 8">PASILLO 8</option>
+                    <option value="PASILLO 9 GRANOS">PASILLO 9 GRANOS</option>
+                    <option value="PASILLO 10 CAVA CUARTO">PASILLO 10 CAVA CUARTO</option>
+                    <option value="PASILLO 11">PASILLO 11</option>
+                    <option value="PASILLO 12">PASILLO 12</option>
+                    <option value="PASILLO 13">PASILLO 13</option>
+                    <option value="PASILLO 14">PASILLO 14</option>
+                    <option value="PASILLO 15">PASILLO 15</option>
+                    <option value="PASILLO 16">PASILLO 16</option>
+                    <option value="PASILLO 17">PASILLO 17</option>
+                    <option value="PASILLO 18 DEPOSITO ABAJO">PASILLO 18 DEPOSITO ABAJO</option>
+                    <option value="PASILLO 19 DEPOSITO ARRIBA">PASILLO 19 DEPOSITO ARRIBA</option>
+                    <option value="COORDINACIÓN">COORDINACIÓN</option>
+                </select>
+                <div class="input-border"></div>
+            </div>
+            <button type="submit" id="submitBtn">
+                <span>Entrar</span>
+                <div class="btn-glow"></div>
+            </button>
+        </form>
+        <div class="cycle-reset-container">
+            <button id="cycleResetBtn" class="cycle-btn">
+                <span class="cycle-icon">⏳</span>
+                <span id="cycleStatusText">Ciclo: Cargando...</span>
+            </button>
+            <button id="githubSyncBtn" class="cycle-btn" style="margin-left: 10px;">
+                <span class="cycle-icon">☁️</span>
+                <span>Sincronizar GitHub</span>
+            </button>
+        </div>
+        <footer class="login-footer">
+            <p> @RedCecosesola</p>
+        </footer>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Modal Compañero -->
+    <div id="partnerModal" class="custom-modal-overlay" style="display:none;">
+        <div class="custom-modal">
+            <div class="modal-header">
+                <h3>👥 Datos del Equipo</h3>
+            </div>
+            <div class="modal-body">
+                <p>Por favor, ingresa el nombre de tu compañero para este inventario:</p>
+                <div class="input-group">
+                    <input type="text" id="partnerInput" placeholder="Nombre completo del compañero">
+                    <div class="input-border"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelPartnerBtn" class="modal-btn secondary">Cancelar</button>
+                <button id="confirmPartnerBtn" class="modal-btn primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Asignaciones de Equipo -->
+    <div id="assignmentsModal" class="custom-modal-overlay" style="display:none;">
+        <div class="custom-modal">
+            <div class="modal-header">
+                <h3>📋 Equipos de Hoy</h3>
+            </div>
+            <div id="assignmentsBody" class="modal-body">
+                <div id="assignmentsList" class="assignments-list">
+                    <div class="no-data-msg">Cargando asignaciones...</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="closeAssignmentsBtn" class="modal-btn primary" style="width: 100%;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
